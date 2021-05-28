@@ -9,6 +9,28 @@ use Exception;
 final class Game
 {
     private int $score = 0;
+    /** @var Frame[] */
+    private array $frames = [];
+
+    private int $currentFrame = 0;
+
+    public function score(): int
+    {
+        return $this->score;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function roll(int $knockedPins): void
+    {
+        self::guardKnockedPins($knockedPins);
+        self::guardFramePins($this->score, $knockedPins);
+
+//        $this->storeFrame($knockedPins);
+
+        $this->score += $knockedPins;
+    }
 
     private static function guardFramePins(int $score, int $knockedPins): void
     {
@@ -24,19 +46,4 @@ final class Game
         }
     }
 
-    public function score(): int
-    {
-        return $this->score;
-    }
-
-    /**
-     * @throws Exception
-     */
-    public function roll(int $knockedPins): void
-    {
-        self::guardKnockedPins($knockedPins);
-        self::guardFramePins($this->score, $knockedPins);
-
-        $this->score += $knockedPins;
-    }
 }

@@ -37,6 +37,8 @@ final class GameTest extends TestCase
         $game->roll(2);
         $result = $game->score();
 
+
+
         self::assertSame(4, $result);
     }
 
@@ -66,5 +68,16 @@ final class GameTest extends TestCase
 
         $game->roll(2);
         $game->roll(9);
+    }
+
+    public function test_two_rolls_on_different_frames_can_knock_more_than_max_pins(): void
+    {
+        $game = new Game();
+
+        $game->roll(2);
+        $game->roll(7);
+        $game->roll(3);
+
+        self::assertTrue(true);
     }
 }
