@@ -27,4 +27,15 @@ final class TestGame extends TestCase
 
         self::assertSame(2, $result);
     }
+
+    public function test_roll_multiple_times_score_accumulated(): void
+    {
+        $game = new Game();
+
+        $game->roll(2);
+        $game->roll(2);
+        $result = $game->score();
+
+        self::assertSame(4, $result);
+    }
 }
