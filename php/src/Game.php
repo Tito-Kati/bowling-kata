@@ -25,18 +25,10 @@ final class Game
     public function roll(int $knockedPins): void
     {
         self::guardKnockedPins($knockedPins);
-        self::guardFramePins($this->score, $knockedPins);
 
 //        $this->storeFrame($knockedPins);
 
         $this->score += $knockedPins;
-    }
-
-    private static function guardFramePins(int $score, int $knockedPins): void
-    {
-        if (($score + $knockedPins) > 10) {
-            throw new Exception("You can't score more than 10 points on a single frame.");
-        }
     }
 
     private static function guardKnockedPins(int $knockedPins): void

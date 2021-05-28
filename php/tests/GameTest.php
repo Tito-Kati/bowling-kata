@@ -37,8 +37,6 @@ final class GameTest extends TestCase
         $game->roll(2);
         $result = $game->score();
 
-
-
         self::assertSame(4, $result);
     }
 
