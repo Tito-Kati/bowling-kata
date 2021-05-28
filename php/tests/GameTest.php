@@ -57,4 +57,14 @@ final class GameTest extends TestCase
 
         $game->roll(-1);
     }
+
+    public function test_two_rolls_on_same_frame_cant_knock_more_than_max_pins(): void
+    {
+        $this->expectException(Exception::class);
+
+        $game = new Game();
+
+        $game->roll(2);
+        $game->roll(9);
+    }
 }
