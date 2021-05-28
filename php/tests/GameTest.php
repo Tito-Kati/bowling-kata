@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace KataTests;
 
+use Exception;
 use Kata\Game;
 use PHPUnit\Framework\TestCase;
 
-final class TestGame extends TestCase
+final class GameTest extends TestCase
 {
     public function test_game_starts_without_score(): void
     {
@@ -37,5 +38,23 @@ final class TestGame extends TestCase
         $result = $game->score();
 
         self::assertSame(4, $result);
+    }
+
+    public function test_roll_more_than_max_should_throw_an_exception(): void
+    {
+        $this->expectException(Exception::class);
+
+        $game = new Game();
+
+        $game->roll(11);
+    }
+
+    public function test_roll_less_than_min_should_throw_an_exception(): void
+    {
+        $this->expectException(Exception::class);
+
+        $game = new Game();
+
+        $game->roll(-1);
     }
 }
