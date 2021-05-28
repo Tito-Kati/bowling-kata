@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace KataTests;
 
@@ -13,6 +15,16 @@ final class TestGame extends TestCase
 
         $result = $game->score();
 
-        self::assertEquals(0, $result);
+        self::assertSame(0, $result);
+    }
+
+    public function test_knocked_pins_adds_score_on_roll(): void
+    {
+        $game = new Game();
+
+        $game->roll(2);
+        $result = $game->score();
+
+        self::assertSame(2, $result);
     }
 }
